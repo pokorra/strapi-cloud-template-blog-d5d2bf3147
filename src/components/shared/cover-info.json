@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_shared_cover_infos",
+  "info": {
+    "displayName": "cover_info"
+  },
+  "options": {},
+  "attributes": {
+    "author_name": {
+      "type": "string"
+    },
+    "publisher": {
+      "type": "string"
+    },
+    "genre": {
+      "type": "string"
+    },
+    "year_of_publication": {
+      "type": "integer"
+    }
+  },
+  "config": {}
+}

@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_shared_content_types",
+  "info": {
+    "displayName": "content_type"
+  },
+  "options": {},
+  "attributes": {
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "cover",
+        "illustration",
+        "poster",
+        "painting"
+      ]
+    }
+  },
+  "config": {}
+}

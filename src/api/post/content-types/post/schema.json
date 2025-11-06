@@ -1,0 +1,51 @@
+{
+  "kind": "collectionType",
+  "collectionName": "posts",
+  "info": {
+    "singularName": "post",
+    "pluralName": "posts",
+    "displayName": "piorun_post"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "blocks"
+    },
+    "images": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "post_id": {
+      "type": "uid",
+      "targetField": "title"
+    },
+    "publication_year": {
+      "type": "integer"
+    },
+    "book_info": {
+      "type": "component",
+      "component": "shared.cover-info",
+      "repeatable": true
+    },
+    "slug": {
+      "type": "string"
+    },
+    "type": {
+      "type": "component",
+      "component": "shared.content-type",
+      "repeatable": true
+    }
+  }
+}
