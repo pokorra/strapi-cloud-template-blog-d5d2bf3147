@@ -10,20 +10,39 @@
   "options": {
     "draftAndPublish": true
   },
-  "pluginOptions": {},
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
   "attributes": {
     "title": {
-      "type": "string"
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "slug": {
       "type": "uid",
       "targetField": "title"
     },
     "post_description": {
-      "type": "blocks"
+      "type": "blocks",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "cover": {
       "type": "media",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
       "multiple": false,
       "required": false,
       "allowedTypes": [
@@ -39,10 +58,20 @@
       "inversedBy": "articles"
     },
     "publication_year": {
-      "type": "integer"
+      "type": "integer",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "book_info": {
       "type": "component",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
       "component": "shared.cover-info",
       "repeatable": true
     },

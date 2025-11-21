@@ -441,25 +441,54 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
   options: {
     draftAndPublish: true;
   };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
   attributes: {
     author: Schema.Attribute.Relation<'manyToOne', 'api::author.author'>;
-    book_info: Schema.Attribute.Component<'shared.cover-info', true>;
+    book_info: Schema.Attribute.Component<'shared.cover-info', true> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     category: Schema.Attribute.Relation<'manyToOne', 'api::category.category'>;
-    cover: Schema.Attribute.Media<'images' | 'files' | 'videos'>;
+    cover: Schema.Attribute.Media<'images' | 'files' | 'videos'> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::article.article'
-    > &
-      Schema.Attribute.Private;
-    post_description: Schema.Attribute.Blocks;
-    publication_year: Schema.Attribute.Integer;
+    >;
+    post_description: Schema.Attribute.Blocks &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    publication_year: Schema.Attribute.Integer &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     publishedAt: Schema.Attribute.DateTime;
     slug: Schema.Attribute.UID<'title'>;
-    title: Schema.Attribute.String;
+    title: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -575,21 +604,75 @@ export interface ApiPiorunAboutPiorunAbout extends Struct.SingleTypeSchema {
   options: {
     draftAndPublish: true;
   };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Blocks &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::piorun-about.piorun-about'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    title: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiPrivacyPolicyPrivacyPolicy extends Struct.SingleTypeSchema {
+  collectionName: 'privacy_policies';
+  info: {
+    displayName: 'privacy-policy';
+    pluralName: 'privacy-policies';
+    singularName: 'privacy-policy';
+  };
+  options: {
+    draftAndPublish: true;
+  };
   attributes: {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     description: Schema.Attribute.Blocks;
-    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    header: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
-      'api::piorun-about.piorun-about'
+      'api::privacy-policy.privacy-policy'
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
     slug: Schema.Attribute.String;
-    title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1111,6 +1194,7 @@ declare module '@strapi/strapi' {
       'api::category.category': ApiCategoryCategory;
       'api::global.global': ApiGlobalGlobal;
       'api::piorun-about.piorun-about': ApiPiorunAboutPiorunAbout;
+      'api::privacy-policy.privacy-policy': ApiPrivacyPolicyPrivacyPolicy;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;
