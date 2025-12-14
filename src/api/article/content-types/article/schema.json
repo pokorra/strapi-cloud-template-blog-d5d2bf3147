@@ -57,12 +57,6 @@
         }
       }
     },
-    "author": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::author.author",
-      "inversedBy": "articles"
-    },
     "publication_year": {
       "type": "integer",
       "pluginOptions": {
